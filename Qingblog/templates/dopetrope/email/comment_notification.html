@@ -1,0 +1,9 @@
+{{ replied_username }}，您好！
+    您在<a href="{{ url_for('blog.index') }}">{{ site_title }}</a>中对
+    {% if is_contact %}
+        {{ replied_username }}的<a href="{{ url_for('blog.contact') }}#comment-{{ replied_comment_id }}">留言</a>
+    {% else %}
+        文章<a href="/article//{{ article.aid }}#comment-{{ replied_comment_id }}">{{ article.name }}<a>的评论
+    {% endif %}
+    被{{ reply_username }}回复了，请根据链接进行回复。
+{{ site_title }}

@@ -1,0 +1,38 @@
+<section class="box">
+    <header>
+        <h3>给作者留言</h3>
+    </header>
+    <section>
+        <form action="{{ url_for('blog.comment') }}/{% if is_contact %}{{ 0 }}{% else %}{{ article.aid }}{% endif %}" method="post" id="commentform">
+            {{ form.csrf_token }}
+            <input type="hidden" name="avatar" id="avatar_id"/>
+            <input type="hidden" name="reply_to_comment" id="reply_to_comment_id"/>
+            <input type="hidden" name="content_type" id="content_type_id"/>
+            <div class="row">
+                <fieldset class="6u">
+                    {{ form.username(maxlength=30, placeholder="昵称", tabindex=1) }}
+                </fieldset>
+                <fieldset class="6u">
+                    {{ form.email(maxlength=75, placeholder="邮箱", tabindex=2) }}
+                </fieldset>
+            </div>
+            <div class="row">
+                <fieldset class="12u">
+                    {{ form.site(maxlength=200, placeholder="网站(可选)", tabindex=3) }}
+                </fieldset>
+            </div>
+            <div class="row">
+                <fieldset class="12u">
+                    {{ form.content(tabindex=4) }}
+                </fieldset>
+            </div>
+            <div class="row">
+                <div class="12u">
+                    <input class="button" value="提交评论" type="submit" />
+                    <input id="not-robot" class="button button-alt" value="我不是机器人，评论前务必点击" type="button">
+                    <input style="display: none;" class="button button-alt" value="取消" type="button" />
+                </div>
+            </div>
+        </form>
+    </section>
+</section>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+        <title>在线 Markdown 编辑器</title> 
+ 
+        <meta http-equiv="Content-Language" content="zh-CN"> 
+        <meta name="keywords" content="Qingblog Markdown 在线编辑器">
+        <meta name="description" content="Qingblog的Markdown在线编辑器">
+        <link rel="shortcut icon" href="" type="image/x-icon"> 
+        <link rel="stylesheet" href="{{ static_url('dopetrope/css/editor/basic.css') }}" type="text/css"> 
+        <link rel="stylesheet" href="{{ static_url('dopetrope/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ static_url('dopetrope/css/editor/codemirror.css') }}">
+    </head>
+
+    <body>
+        <style>
+            #error_msg {border:1px dashed #C00; padding:5px; color:#C00;margin:10px 2px;display:none;}
+            .toolUsing textarea{min-height:400px;font-size:12px;}
+            .Result,.Code{border:1px solid #ccc;width:410px;height:400px;overflow-x: hidden;}
+            .CodeMirror {width:410px;min-height:400px;}
+            .CodeMirror-scroll {height: auto;overflow-y: hidden;overflow-x: hidden;}
+        </style>
+
+        <div id="mainContent" class="wrapper">
+            <div class="toolName">在线 Markdown 编译器</div>
+            <pre id="error_msg" class="error_msg"></pre>
+            <form method='get' action="">
+            <div class="toolUsing clearfix">
+                <div class="leftBar">
+                    <div class="Code">
+                        <textarea name="markdown" id="markdown_source" onkeyup="compile();" style="display: none;"></textarea>
+                        <div class="CodeMirror CodeMirror-wrap">
+                
+                            <div class="CodeMirror-scroll cm-s-default" tabindex="-1">
+                                <div style="position: relative; height: 140px;">
+                                    <div style="position: relative; top: 0px;">                                       
+                                        <div class="CodeMirror-lines">
+                                            <div style="position: relative; z-index: 0; outline: none; margin-left: 27px;">
+                                                <div style="position: absolute; width: 100%; height: 0; overflow: hidden; visibility: hidden;">
+                                            </div>
+                                            <pre class="CodeMirror-cursor" style="top: 104px; left: 0px;">&nbsp;</pre>
+                                            <div style="position: relative; z-index: -1; display: none;"></div>                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="operateLR">
+                    <button id="com_btn" class="btn btn-primary" onclick="compile();" type="button" data-loading-text="正在编译..."><i class="icon-chevron-right icon-white"></i> HTML</button><br><br>
+                    <div style="margin-top: 100px">
+                        <button class="btn btn-primary active" id="save">Compose</button>
+                    </div>
+                </div>
+
+                <div class="rightBar">
+                    <div class="Result">
+                        <textarea name="html" id="markdown_result" style="display: none;"></textarea>
+                        <div class="CodeMirror CodeMirror-wrap">                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </form>
+            <div id="realtime-wrapper" style="margin-top: 10px; display: block;">
+                <lalel>实时预览：</lalel>
+                <div id="realtime-preview" class="well" style="margin-top:10px;"></div>
+            </div>
+        </div>
+ 
+        <script type="text/javascript" src="{{ static_url('dopetrope/js/jquery-1.7.2.min.js') }}"></script>
+        <script type="text/javascript" src="{{ static_url('dopetrope/js/editor/codemirror.js') }}"></script>
+        <script type="text/javascript" src="{{ static_url('dopetrope/js/editor/xml.js') }}"></script>
+        <script type="text/javascript" src="{{ static_url('dopetrope/js/editor/htmlmixed.js') }}"></script>
+        <script type="text/javascript" src="{{ static_url('dopetrope/js/editor/markdown.js') }}"></script>
+        <script type="text/javascript" src="{{ static_url('dopetrope/js/editor/common.js') }}"></script>
+        <script type="text/javascript" src="{{ static_url('dopetrope/js/editor/Markdown.Converter.js') }}"></script>
+        <script src="{{ static_url('dopetrope/js/bootstrap.min.js') }}"></script>    
+
+        <script type="text/javascript">
+            $(function(){
+                $("#realtime").click(function(){
+                    $("#realtime-wrapper").toggle();
+                });
+            });
+
+            var editor1 = CodeMirror.fromTextArea(document.getElementById("markdown_source"), {
+              mode: "markdown",
+              lineNumbers: true,
+              lineWrapping: true,
+              onCursorActivity: function() {
+                editor1.setLineClass(hlLine, null, null);
+                hlLine = editor1.setLineClass(editor1.getCursor().line, null, "activeline");
+              },
+              onChange:function(){
+                compile();
+              }
+            });
+
+            var hlLine = editor1.setLineClass(0, "activeline");
+
+            var editor2 = CodeMirror.fromTextArea(document.getElementById("markdown_result"), {
+              mode: "text/html",
+              lineNumbers: true,
+              lineWrapping: true,
+              onCursorActivity: function() {
+                editor2.setLineClass(hlLine, null, null);
+                hlLine = editor2.setLineClass(editor2.getCursor().line, null, "activeline");
+              }
+            });
+
+            var hlLine = editor2.setLineClass(0, "activeline");
+
+            function compile(){
+                var markdown = editor1.getValue();
+                $("#com_btn").button("loading");
+                var converter = new Markdown.Converter();
+                var html = converter.makeHtml(markdown);
+                editor2.setValue(html);
+                $("#com_btn").button("reset");
+                $("#realtime-preview").html(html);
+            }
+        </script>
+    </body>
+</html>

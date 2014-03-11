@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% if title %}
+    <title>{{title}} - Qingblog</title>
+    {% else %}
+    <title>Qingblog</title>
+    {% endif %}
+
+    <link rel="stylesheet" type="text/css" href="{{ static_url('dopetrope/css/bootstrap.min.css') }}" media="screen">
+    <link rel="stylesheet" type="text/css" href="{{ static_url('dopetrope/css/bootstrap-responsive.min.css') }}" media="screen">
+    <script src="{{ static_url('dopetrope/js/jquery-1.8.3.min.js') }}"></script>
+    <script src="{{ static_url('dopetrope/js/bootstrap.min.js') }}"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta property="wb:webmaster" content="b0ce4bced818a31e" />
+  </head>
+  
+  <body>
+    <div class="container">
+      <div class="navbar">
+        <div class="navbar-inner">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/">Qingblog</a>
+            <ul class="nav">
+              <li><a href="{{ url_for('blog.index') }}">Home</a></li>
+              {% if g.user %}
+              <li><a href="{{ url_for('account.logout') }}">Logout</a></li>
+              {% endif %}
+            </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span12">
+          {% block content %}{% endblock %}
+        </div>
+      </div>
+    </div>   
+  </body>
+</html>

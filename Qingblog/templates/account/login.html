@@ -1,0 +1,55 @@
+<!-- extend base layout -->
+{% extends "account/base.html" %}
+
+{% block content %}
+{% include 'account/flash.html' %}
+<div class="well">
+    <h4>Please Login</h4>
+    <form class="form" action="" method="post" name="login">
+        {{form.hidden_tag()}}
+
+        <div class="control-group{% if form.errors.nickname %} error{% endif %}">
+            <label class="control-label" for="inputIcon">Nickname:</label>
+            <div class="controls">
+                <div class="input-prepend">
+                    <span class="add-on"><i class="icon-user"></i></span>
+                    {{ form.username(size = 40, class = "span3") }}
+                    {% for error in form.errors.nickname %}
+                        <span class="help-inline">[{{error}}]</span><br>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="control-group{% if form.errors.password %} error{% endif %}">
+            <label class="control-label" for="inputIcon">Password:</label>
+            <div class="controls">
+                <div class="input-prepend">
+                    <span class="add-on"><i class="icon-lock"></i></span>
+                    {{ form.password(size = 40, class = "span3") }}
+                    {% for error in form.errors.password %}
+                        <span class="help-inline">[{{error}}]</span><br>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <input class="btn btn-primary" type="submit" value="Log In">
+                <a href="{{callback}}" style="padding:45px">
+                    <img src="{{ static_url('dopetrope/img/sina.png') }}">
+                </a>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div name = "about" align = "right">
+    About 
+    &nbsp;
+    <a href="">
+        <span style="cloer:blue">About Qingblog</span>
+    </a>
+</div>
+{% endblock %}
+

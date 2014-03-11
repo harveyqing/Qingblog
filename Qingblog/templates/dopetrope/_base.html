@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html {% block xmlns %}{% endblock %}>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta property="wb:webmaster" content="3caf5a5b94e6991e" />
+    {% block meta %} {% endblock %}
+    <link rel="shortcut icon" href="{{ static_url('dopetrope/img/Qing.ico') }}" />
+
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>有梦，我就能飞翔</title>
+    {% endif %}
+
+    <!--[if lte IE 8]><link rel="stylesheet" href="{{ static_url('dopetrope/css/ie8.css') }}" /><![endif]-->
+    <script src="{{ static_url('dopetrope/js/jquery-1.8.3.min.js') }}"></script>
+    <script src="{{ '/static/dopetrope/css/5grid/init.js?use=mobile,desktop,1000px&amp;mobileUI=1&amp;mobileUI.theme=none&amp;mobileUI.titleBarOverlaid=1&amp;viewport_is1000px=1060' }}">    </script>
+    <noscript>
+        <link rel="stylesheet" href="/static/dopetrope/css/5grid/core.css" />
+        <link rel="stylesheet" href="/static/dopetrope/css/5grid/core-desktop.css" />
+        <link rel="stylesheet" href="/static/dopetrope/css/5grid/core-1200px.css" />
+        <link rel="stylesheet" href="/static/dopetrope/css/5grid/core-noscript.css" />
+        <link rel="stylesheet" href="/static/dopetrope/css/style.css" />
+        <link rel="stylesheet" href="/static/dopetrope/css/style-desktop.css" />
+    </noscript>
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ static_url('dopetrope/css/Qing.css') }}" />
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900,300italic" rel="stylesheet" />
+    {% block css %}
+    {% endblock %}
+
+</head>
+
+<body id="top" class="homepage">
+    {% block header %}
+        {% include "dopetrope/snippet/nav.html" %}
+    {% endblock %}
+
+    <!-- Main Wrapper -->
+    <div id="main-wrapper">
+        <div class="5grid-layout">
+            <div class="row">
+                <div class="12u">
+                    <!-- Portfolio -->
+                    <section>
+                        <div class="5grid">
+                            <div class="row">
+                                <div class="8u mobileUI-main-content">
+                                {% block main %}
+                                {% endblock %}
+                                </div>
+                                {% include "dopetrope/snippet/sidebar.html" %}
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% block footer %}
+        {% include "dopetrope/snippet/footer.html" %}
+    {% endblock %}
+
+    <!--[if lt IE 8]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script src="{{ static_url('dopetrope/js/jquery.dropotron-1.2.js') }}"></script>
+    <script src="{{ static_url('dopetrope/js/init.js') }}"></script>
+    <script src="{{ static_url('dopetrope/js/scrollToTop.js') }}"></script>
+    <script src="{{ static_url('dopetrope/js/jquery.cookie.js') }}"></script>
+    <script src="{{ static_url('dopetrope/js/theme.js') }}"></script>
+
+    {% block js %}
+    {% endblock %}
+</body>

@@ -1,0 +1,20 @@
+{% extends "dopetrope/_base.html" %}
+
+{% block css %}
+    <link type="text/css" rel="stylesheet" href="/static/dopetrope/css/SyntaxHighlighter/shCoreEclipse.css"><link>
+{% endblock %}
+
+{% block main %}
+    <article class="box">
+        <h3>博客分类 &#8216;{{ category.name }}&#8217;</h3>
+    </article>
+
+    {% include "dopetrope/article/articles.html" %}
+
+{% endblock %}
+
+{% block js %}
+    <script language="JavaScript" src="/static/dopetrope/js/SyntaxHighlighter/shCore.js"></script>
+    <script language="JavaScript" src="/static/dopetrope/js/SyntaxHighlighter/shAutoloader.js"></script>
+    <script language="JavaScript" src="/static/dopetrope/js/loadSyntaxHighlighter.js"></script>
+{% endblock %}

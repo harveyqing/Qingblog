@@ -1,0 +1,45 @@
+{% macro pagination(paginator, url) %}
+<div class="pager">
+    {% if paginator.pagination.has_prev %}
+    <a href="{{ url }}{{ paginator.pagination.prev_num }}" class="button previous" >上一页</a>
+    {% endif %}
+
+    <div class="pages">
+        {% if paginator.page <= paginator.left_continual_max %}
+            {% for i in paginator.left_continual_range %}
+        <a href="{{ url }}{{ i }}" >{{ i }}</a>
+            {% endfor %}
+        {% else %}
+            {% for i in paginator.left_edge_range %}
+        <a href="{{ url }}{{ i }}" >{{ i }}</a>
+            {% endfor %}
+        <span>...</span>
+            {% for i in paginator.left_range %}
+        <a href="{{ url }}{{ i }}" >{{ i }}</a>
+            {% endfor %}
+        {% endif %}
+
+        <a class="active" onclick="return false;">{{ paginator.page }}</a>
+
+        {% if paginator.page >= paginator.right_continual_min %}
+            {% for i in paginator.right_continual_range %}
+        <a href="{{ url }}{{ i }}" >{{ i }}</a>
+            {% endfor %}
+        {% else %}
+            {% for i in paginator.right_range %}
+        <a href="{{ url }}{{ i }}" >{{ i }}</a>
+            {% endfor %}
+        <span>...</span>
+            {% for i in paginator.right_edge_range %}
+        <a href="{{ url }}{{ i }}" >{{ i }}</a>
+            {% endfor %}
+        {% endif %}
+
+    </div>
+
+    {% if paginator.pagination.has_next %}
+    <a href="{{ url }}{{ paginator.pagination.next_num }}" class="button next" >下一页</a>
+    {% endif %}
+</div>
+
+{% endmacro %}

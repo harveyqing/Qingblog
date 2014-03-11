@@ -1,0 +1,56 @@
+{% extends "dopetrope/_base.html" %}
+
+{% block css %}
+    <link type="text/css" rel="stylesheet" href="{{ static_url('dopetrope/css/SyntaxHighlighter/shCoreEclipse.css') }}">
+{% endblock %}
+
+{% block js %}
+    <script src="{{ static_url('dopetrope/js/SyntaxHighlighter/shCore.js') }}"></script>
+    <script src="{{ static_url('dopetrope/js/SyntaxHighlighter/shAutoloader.js') }}"></script>
+    <script src="{{ static_url('dopetrope/js/loadSyntaxHighlighter.js') }}"></script>
+{% endblock %}
+
+{% block main %}
+<!-- Content -->
+<article class="box">
+    <header>
+        <h1><a href="/about">关于博主</a></h1>
+    </header>
+    <section>
+      <p>
+      Harvey，码农一坨，自诩为战士，有一颗不死的心；开源玩家一枚，偶有小作，然难登大雅之堂。
+      </p>
+      <h4>扯扯淡</h4>
+      <p>
+      接触计算机以及编程的时间很长，至今还是个菜鸟，混迹于一所二流大学，偶尔卖卖萌、愤个青。
+      </p>
+      <p>
+      对互联网有极大的热情和激情，立志此生献身于彼。常常“偷偷摸摸”地钻进各大技术论坛，随手注个册，便开始了漫漫潜水长征。
+      蒙各技术大拿之益，匪浅也。感彼之自由分享之精神，然技之劣矣，唯唏嘘嗟叹余之百无一用。
+      </p>
+      <p>
+      我想，是时候好好的对待所学了，是时候梳理自己的知识点了，是时候为互联网做点贡献了，是时候开始自己的尝试了。
+      </p>
+      <p>
+      我从初中二年级学习编程，现在大四。我想告诉我自己，忘掉之前你做出的所有“垃圾”吧，好好的、潜心的做一个IT男吧。
+      </p>
+      <h4>关于本博客</h4>
+      <p>
+      除UI之外，本博客完全由博主实现，采用<a href="http://flask.pocoo.org/">Flask框架</a>，代码开源，托管在<a href="#">Github</a>上，
+      如有需要，可随意clone并修改或使用之。如有更好的建议或发现bug，请mail我。
+      </p>
+      <p>
+      推荐使用Chrome/Firefox/IE 8 and 8+访问。
+      </p>
+      <h4>联系方式</h4>
+      <ul>
+          <li>昵称(NickName):Harvey/Qingtian/Harveyqing/King</li>
+          <li>邮箱(Email):harveyqing at gmail dot com</li>
+          <li>微博(Weibo):<a href="http://weibo.com/harveyqing" alt="Sina Weibo">http://weibo.com/harveyqing</a></li>
+          <li>主页(Homepage):<a href="http://harveyqing.com" alt="Homepage">http://harveyqing.com</a></li>
+          <li>豆瓣(Douban):<a href="http://www.douban.com/people/64891736/" alt="Douban">My Douban</a></li>
+          <li>知乎(Zhihu):<a href="http://www.zhihu.com/people/wang-harvey" alt="Douban">Harvey's Zhihu</a></li>
+      </ul>
+    </section>
+</article>
+{% endblock %}

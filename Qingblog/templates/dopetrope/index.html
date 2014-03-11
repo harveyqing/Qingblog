@@ -1,0 +1,16 @@
+{% extends "dopetrope/_base.html" %}
+
+{% block css %}
+    <link type="text/css" rel="stylesheet" href="{{ static_url('dopetrope/css/SyntaxHighlighter/shCoreEclipse.css') }}">
+{% endblock %}
+
+{% block js %}
+    <script src="{{ static_url('dopetrope/js/SyntaxHighlighter/shCore.js') }}"></script>
+    <script src="{{ static_url('dopetrope/js/SyntaxHighlighter/shAutoloader.js') }}"></script>
+    <script src="{{ static_url('dopetrope/js/loadSyntaxHighlighter.js') }}"></script>
+{% endblock %}
+
+{% block main %}
+    <!-- Content -->
+    {% include "dopetrope/article/articles.html" %}
+{% endblock %}

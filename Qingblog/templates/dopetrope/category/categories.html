@@ -1,0 +1,25 @@
+{% extends "dopetrope/_base.html" %}
+
+{% block main %}
+{% for category in fetch_all_categories() %}
+<article class="box">
+    <header>
+        <h2><a href="/category/{{ category.name }}">{{ category.title }}</a></h2>
+    </header>
+    <section>
+        <ul class="divided">
+        {% for article in fetch_category_articles(category.caid, 5) %}
+        <li>
+            <div><a href="/article/{{ article.aid }}">{{ article.title }}</a></div>
+            <div style="font-size: .9em;">发表于{{ article.created_time|format_posttime }}</div>
+        </li>
+        {% endfor %}
+    </ul>
+    </section>
+    <footer class="actions">
+        <a href="/category/{{ category.name }} " class="button">更多文章 </a>
+    </footer>
+</article>
+{% endfor %}
+
+{% endblock %}

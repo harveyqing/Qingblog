@@ -1,0 +1,75 @@
+<section id="comments" class="box">
+    <header>
+        {% if is_contact %}
+        <h3>{{ comments_count }}条留言</h3>
+        {% else %}
+        <h3>{{ comments_count }}个评论</h3>
+        {% endif %}
+    </header>
+    <section>
+        <ol class="commentlist">
+            {% for top_entry in top_comments %}
+            {% set lastentry = top_comments|last %}
+            <li id="comment-{{ top_entry.coid }}" class="comment{% if top_entry == lastentry %} last{% endif %}">
+                <article class="comment">
+                    <header class="comment-meta comment-author vcard">
+                        <img src="{% if top_entry.avatar %}{{ top_entry.avatar }}{% else %}/static/dopetrope/img/gravatar.jpg{% endif %}" alt="" class="avatar thumbnail" height="60" width="60" />
+                        <cite class="fn">
+                            <a class="url" href="{% if top_entry.site %}http://{{ top_entry.site }}{% endif %}"{% if not top_entry.site %} onclick="return false;"{%endif%}>
+                                {{ top_entry.username }}
+                            </a>
+                        </cite>
+                        <a href="#" onclick="return false;">
+                            <time datetime="{{ top_entry.post_date|format_commenttime }}">{{ top_entry.post_date|format_commenttime }}</time>
+                        </a>
+                        {% if is_contact %}
+                            {% if top_entry.username == fetch_admin().name%}
+                            <strong class="author-sign">博主</strong>
+                            {% endif %}
+                        {% else %}
+                            {% if top_entry.username == article.author.name %}
+                            <strong class="author-sign">作者</strong>
+                            {% endif %}
+                        {% endif %}
+                    </header>
+                    <section class="comment-content comment">
+                        <p>{{ top_entry.content|safe }}</p>
+                    </section>
+                    <div class="reply" title="回复这条评论"></div>
+                </article>
+            </li>
+                {% for entry in get_article_comments(article_id, top_entry) %}
+                <li id="comment-{{ entry.coid }}" class="comment">
+                    <div class="indent">
+                    <article class="comment">
+                        <header class="comment-meta comment-author vcard">
+                            <img src="{% if entry.avatar %}{{ entry.avatar }}{% else %}/static/dopetrope/img/gravatar.jpg{% endif %}" alt="" class="avatar thumbnail" height="60" width="60" />
+                            <cite class="fn">
+                                <a class="url" href="{% if entry.site %}http://{{ entry.site }}{% endif %}"{% if not entry.site %} onclick="return false;"{% endif %}>
+                                    {{ entry.username }}</a>
+                            </cite>
+                            <a href="#" onclick="return false;">
+                                <time datetime="{{ entry.post_date|format_commenttime }}">{{ entry.post_date|format_commenttime }}</time>
+                            </a>
+                        {% if is_contact %}
+                            {% if entry.username == fetch_admin().name%}
+                            <strong class="author-sign">博主</strong>
+                            {% endif %}
+                        {% else %}
+                            {% if entry.username == article.author.name %}
+                            <strong class="author-sign">作者</strong>
+                            {% endif %}
+                        {% endif %}
+                        </header>
+                        <section class="comment-content comment">
+                            <div>{{ entry.content|safe }}</div>
+                        </section>
+                        <div class="reply" title="回复这条{% if is_contact %}留言{% else %}评论{% endif %}"></div>
+                    </article>
+                    </div>
+                </li>
+                {% endfor %}
+        {% endfor %}
+        </ol>
+    </section>
+</section>

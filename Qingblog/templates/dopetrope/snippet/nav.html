@@ -1,0 +1,48 @@
+<!-- Header Wrapper -->
+<div id="header-wrapper">
+    <div class="5grid-layout">
+        <div class="row">
+            <div class="12u">
+                <!-- Header -->
+                    <section id="header">
+                        <!-- Logo -->
+                            <h1 id="logo-text"><a href="/">有梦，我就能飞翔</a></h1>
+                        <!-- Nav -->
+                            <nav id="nav" class="mobileUI-site-nav">
+                                <ul>
+                                    {% if not nav_current %}
+                                    <li class="current_page_item">
+                                        <a href="{{ url_for('blog.index') }}">首页</a>
+                                    </li>
+                                    {% else %}
+                                    <li {% if nav_current == 'index' %} class="current_page_item"{% endif %}>
+                                        <a href="{{ url_for('blog.index') }}">首页</a>
+                                    </li>
+                                    {% endif %}
+                                    <li {% if nav_current == 'category' %}class="current_page_item"{% endif %}>
+                                        <a href="{{ url_for('blog.categories') }}">分类</a>
+                                        <ul>
+                                            {% for category in fetch_all_categories() %}
+                                            <li>
+                                                <a href="/category/{{ category.name }}">{{ category.title }}</a>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                    <li {% if nav_current == 'contact' %} class="current_page_item"{% endif %}>
+                                        <a href="{{ url_for('blog.contact') }}">留言板</a>
+                                    </li>
+                                    <li {% if nav_current == "about" %} class="current_page_item"{% endif %}>
+                                        <a href="{{ url_for('blog.about') }}">关于我</a>
+                                    </li>
+                                    <li><a href="{{ url_for('blog.rss') }}">RSS</a></li>
+                                </ul>
+                            </nav>
+
+                    </section>
+
+            </div>
+        </div>
+
+    </div>
+</div>

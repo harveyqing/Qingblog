@@ -1,0 +1,22 @@
+{% extends "dopetrope/_base.html" %}
+
+{% block main %}
+    <article class="box">
+        <header>
+            <h3>共搜索到{{ count }}条结果: </h3>
+        </header>
+    </article>
+
+    {% include "dopetrope/article/articles.html" %}
+{% endblock %}
+
+{% block js %}
+    <script language="JavaScript">
+        $(function(){
+            $('div.pager a').each(function(i) {
+                href = $(this).attr('href');
+                $(this).attr('href', href+'?q={{ query }}')
+            });
+        });
+    </script>
+{% endblock %}

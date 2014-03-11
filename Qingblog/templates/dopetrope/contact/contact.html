@@ -1,0 +1,36 @@
+{% extends "dopetrope/_base.html" %}
+
+{% block js %}
+    <script src="/static/dopetrope/js/jquery.form.js"></script>
+    <script src="/static/dopetrope/js/jquery.blockUI.js"></script>
+    <script src="/static/dopetrope/js/comment.js"></script>
+    <script language="JavaScript">
+        ajaxUrl = "/comment/{{ article_id }}";
+        var commentTips = {
+            success: "留言成功，正在更新留言列表！",
+            miss: "留言失败，请填写所有必填信息！",
+            fail: "留言失败，请确保全部信息填写正确！",
+            email: "评论失败，请填写正确的email！",
+            nochn: "留言失败，评论中必须包含中文！"
+        }
+    </script>
+{% endblock %}
+
+{% block main %}
+
+{% if comments_count != 0 %}
+<article class="box">
+    <h3>留言给作者</h3>
+</article>
+
+{% include "dopetrope/comment/comments.html" %}
+
+{% else %}
+<article class="box">
+    <h3>目前还没有留言</h3>
+</article>
+{% endif %}
+
+{% include "dopetrope/comment/comment_form.html" %}
+
+{% endblock %}
