@@ -47,7 +47,7 @@ Then install requirements:
 
 Init the database and set a `admin` user:
 
-   python manage.py createdb
+    python manage.py createdb
 
 * Note: The initial `admin` account use `name=harvey`, `password=123456`, `email=harveyqing@gmail.com`, you can change in the `manage.py`.
 
