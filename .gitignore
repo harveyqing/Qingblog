@@ -48,3 +48,4 @@ docs/_build/
 # Project specified
 *.log
 *.swp
+Qingblog/whoosh/*

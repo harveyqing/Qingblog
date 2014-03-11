@@ -46,6 +46,7 @@ Then install requirements:
 * Note: I just list a part of required libraries in the `requirements.txt` file, others can be installed themselves while they are needed.
 
 Init the database and set a `admin` user:
+
    python manage.py createdb
 
 * Note: The initial `admin` account use `name=harvey`, `password=123456`, `email=harveyqing@gmail.com`, you can change in the `manage.py`.
@@ -63,10 +64,13 @@ in the address bar
 You may want to know:
 ======
 - how can I login as the administrator:
+    
     your_host/account/signin
 
 - how can I enter the backstage:
+
     your_host/Qingblog/admin
 
 - how can I use the markdown editor:
+
     your_host/edit/editor
