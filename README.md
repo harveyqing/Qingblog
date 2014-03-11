@@ -22,7 +22,8 @@ Features:
 
 - With a realtime preview markdown editor so you can write articles with a markdown format
 
-... and you can explore yourselves if you want (^ ^)
+...
+and you can explore yourselves if you want (^ ^)
 
 Notes:
 ======
@@ -35,9 +36,11 @@ Notes:
 To setup locally:
 ======
 Run:
+
     python virtualenv.py Qingblog
 
 Then install requirements:
+
     Qingblog/bin/pip install -r Qingblog/Qingblog/requirements.txt
 
 * Note: I just list a part of required libraries in the `requirements.txt` file, others can be installed themselves while they are needed.
@@ -45,13 +48,16 @@ Then install requirements:
 Init the database and set a `admin` user:
    python manage.py createdb
 
-* Note: The initial `admin` account use `name=harvey`, `password=123456`, 'email=harveyqing@gmail.com`, you can change in the `manage.py`.
+* Note: The initial `admin` account use `name=harvey`, `password=123456`, `email=harveyqing@gmail.com`, you can change in the `manage.py`.
 
 Start server:
+
     python manage.py runserver
 
 Now just open your browser and type:
+    
     localhost:5000
+
 in the address bar
 
 You may want to know:
